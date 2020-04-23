@@ -30,7 +30,8 @@ function beforeHeadersHandler(e) {
             "Found '" + storedItem + "' value for header '" + header.name + "'"
           );
           msg = browser.runtime.sendMessage({
-            greeting: "test",
+            header: header.name,
+            keyword: storedItem,
           });
           msg.then(
             () => {
