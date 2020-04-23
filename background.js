@@ -1,11 +1,12 @@
 var storedItems = [];
-var storedsearchString = browser.storage.sync.get("searchString");
-storedsearchString.then((res) => {
+var storedSearchString = browser.storage.sync.get("searchString");
+
+storedSearchString.then((res) => {
   console.log("ok got searchString " + res.searchString);
   storedItems.push(res.searchString);
 });
 
-function handleStorageChange(changes, area) {
+function storageChangedHandler(changes, area) {
   console.log("Change in storage area: " + area);
 
   let changedItems = Object.keys(changes);
@@ -28,6 +29,17 @@ function beforeHeadersHandler(e) {
           console.log(
             "Found '" + storedItem + "' value for header '" + header.name + "'"
           );
+          msg = browser.runtime.sendMessage({
+            greeting: "test",
+          });
+          msg.then(
+            () => {
+              console.log("sent!");
+            },
+            (e) => {
+              console.log("failed: " + e);
+            }
+          );
         } else {
           console.log(storedItem + " not in " + header.name);
         }
@@ -40,7 +52,7 @@ function beforeHeadersHandler(e) {
 function beforeRequestHandler(e) {}
 
 // click handlers
-function handleClickOpenOptionsPage() {
+function openOptionsPageHandler() {
   browser.runtime.openOptionsPage();
 }
 
@@ -62,7 +74,7 @@ browser.webRequest.onBeforeSendHeaders.addListener(
 );
 
 // register click handlers
-browser.browserAction.onClicked.addListener(handleClickOpenOptionsPage);
+browser.browserAction.onClicked.addListener(openOptionsPageHandler);
 
 // register storage change handlers
-browser.storage.onChanged.addListener(handleStorageChange);
+browser.storage.onChanged.addListener(storageChangedHandler);
