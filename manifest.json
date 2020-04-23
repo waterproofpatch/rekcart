@@ -18,6 +18,11 @@
             "strict_min_version": "42.0"
         }
     },
+    "sidebar_action": {
+        "default_icon": "icons/border-48.png",
+        "default_title": "Keywords",
+        "default_panel": "panel.html"
+    },
     "options_ui": {
         "page": "options.html",
         "browser_style": true
