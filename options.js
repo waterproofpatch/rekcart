@@ -15,7 +15,7 @@ function restoreOptions() {
   var gettingItem = browser.storage.sync.get("searchString");
   gettingItem.then((res) => {
     document.querySelector("#searchString").value =
-      res.searchString || "Firefox red";
+      res.searchString || "Default";
   });
 }
 
