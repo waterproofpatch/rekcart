@@ -6,7 +6,9 @@ function addKeyword(word) {
 }
 
 function handleKeywordMatch(message, sender, sendResponse) {
-  console.log("Header " + message.header + " contained " + message.keyword);
+  let listingMsg = "Header " + message.header + " contained " + message.keyword;
+  console.log(listingMsg);
+  contentBox.textContent = listingMsg;
 }
 
 browser.runtime.onMessage.addListener(handleKeywordMatch);
