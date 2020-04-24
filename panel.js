@@ -1,5 +1,5 @@
 var myWindowId;
-const contentBox = document.querySelector("#content");
+const entryListing = document.querySelector("#entries");
 
 function addKeyword(word) {
   console.log("adding keyword");
@@ -7,8 +7,11 @@ function addKeyword(word) {
 
 function handleKeywordMatch(message, sender, sendResponse) {
   let listingMsg = "Header " + message.header + " contained " + message.keyword;
-  console.log(listingMsg);
-  contentBox.textContent = listingMsg;
+  listEntry = document.createElement("li");
+  listEntry.textContent = listingMsg;
+  entryListing.append(listEntry);
+
+  //   entryListing.append("<li>" + listingMsg + "</li>");
 }
 
 browser.runtime.onMessage.addListener(handleKeywordMatch);
