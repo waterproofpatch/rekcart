@@ -6,7 +6,13 @@ function addKeyword(word) {
 }
 
 function handleKeywordMatch(message, sender, sendResponse) {
-  let listingMsg = "Header " + message.header + " contained " + message.keyword;
+  let listingMsg =
+    "URL " +
+    message.url +
+    " Header " +
+    message.header +
+    " contained " +
+    message.keyword;
   listEntry = document.createElement("li");
   listEntry.textContent = listingMsg;
   entryListing.append(listEntry);

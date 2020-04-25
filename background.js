@@ -33,6 +33,7 @@ function beforeHeadersHandler(e) {
         msg = browser.runtime.sendMessage({
           header: header.name,
           keyword: storedItem,
+          url: e.url,
         });
         msg.then(
           () => {
